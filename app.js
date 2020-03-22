@@ -1,11 +1,31 @@
 const express = require('express');
-
+const helmet = require('helmet');
+const morgan = require('morgan');
 const Joi = require('joi');
+
+
 // const logger = require('./logger');
 // const auth = require('./athenticate');
 const app = express();
-app.use(express.json());
 
+
+
+
+app.use(express.json());
+//last middle ware is static: serve statis files
+app.use(express.static('public'));
+//Morgan logs http request
+app.use(morgan('tiny'));
+app.use(express.urlencoded({ extended : true }));
+//Middleware functions that set HTTP response headers.
+app.use(helmet());
+
+
+//Defining working environment/ development, staging,testing/
+if(app.get('env') === 'development'){
+app.use(morgan('tiny'));
+console.log('Morgan Enabled...');
+}
 //Creating a custom middle ware
 app.use(function log(req, res, next) {
     console.log('Logging......');
@@ -16,10 +36,7 @@ app.use(function auth (req, res, next) {
     console.log('Authentication......');
     next();
 });
-app.use(express.static('public'));
-//
-app.use(express.urlencoded({ extended : true }));
-//last middle ware is static: serve statis files
+
 
 const genres = [
     {id:1, name : 'Adventure' },
