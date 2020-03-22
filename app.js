@@ -1,14 +1,25 @@
 const express = require('express');
 
 const Joi = require('joi');
-const logger = require('./logger');
-const auth = require('./athenticate');
+// const logger = require('./logger');
+// const auth = require('./athenticate');
 const app = express();
 app.use(express.json());
 
 //Creating a custom middle ware
-app.use(logger);
-// app.use(auth);
+app.use(function log(req, res, next) {
+    console.log('Logging......');
+    next();
+}
+);
+app.use(function auth (req, res, next) {
+    console.log('Authentication......');
+    next();
+});
+app.use(express.static('public'));
+//
+app.use(express.urlencoded({ extended : true }));
+//last middle ware is static: serve statis files
 
 const genres = [
     {id:1, name : 'Adventure' },
