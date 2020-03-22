@@ -46,9 +46,6 @@ app.post('/api/genres/', (req, res) => {
 });
 
 
-
-
-
 //PUT(UPDATE)
 //Because we are dealing with a spoecific course:we need need a course id
 app.put('/api/genres/:id', (req,res) => {
