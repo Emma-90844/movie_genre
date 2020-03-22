@@ -1,3 +1,8 @@
+
+3-Every API end point should have a seperate file or a seperate module
+-Every logical part of the application should be on a seperate file
+-All routes of genres should be in genres.js
+
 4-Middle ware functions: Note that middle ware are called in sequence
 5- app.use()
 This method is called to install a middle ware function in a 
