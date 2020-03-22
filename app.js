@@ -1,5 +1,8 @@
 const express = require('express');
 const helmet = require('helmet');
+const startupDebugger = require('debug')('app:startup');
+//Debug database related moudles
+const dbDebugger = require('debug')('app:db');
 const morgan = require('morgan');
 const Joi = require('joi');
 
@@ -8,7 +11,9 @@ const Joi = require('joi');
 // const auth = require('./athenticate');
 const app = express();
 
-
+//Setting templating engine
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 
 app.use(express.json());
@@ -24,8 +29,13 @@ app.use(helmet());
 //Defining working environment/ development, staging,testing/
 if(app.get('env') === 'development'){
 app.use(morgan('tiny'));
-console.log('Morgan Enabled...');
+startupDebugger('Morgan Enabled...');
 }
+
+//Db work
+dbDebugger('Connected to the database');
+
+
 //Creating a custom middle ware
 app.use(function log(req, res, next) {
     console.log('Logging......');
@@ -44,6 +54,10 @@ const genres = [
     {id:3, name : 'Detective' },
     {id:4, name : 'Christian' },
 ];
+
+app.get('/',(req, res) => {
+    res.render('index',{title: 'My Express App', message: 'Hello'})
+});
 
 //GET(  Returns a list of genres )
 app.get('/api/genres', (req, res) => {

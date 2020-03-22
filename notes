@@ -43,3 +43,6 @@ app.use(function(req, res, next) {
 
 })
 next-In this case is a reference to the next middle ware function
+
+9-Setting up app to debug mode:
+export DEbug=app:startup
