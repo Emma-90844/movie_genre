@@ -1,0 +1,45 @@
+4-Middle ware functions: Note that middle ware are called in sequence
+5- app.use()
+This method is called to install a middle ware function in a 
+request processing pipeline
+
+
+
+
+6-app.use(express.json);
+Express.json method. This method returns a middle ware function
+The middle ware function reads the request, if there is a .json 
+object in  the body of the request, it will pass the boby of the 
+request into a json object.
+Then set the 
+                req.body
+
+Recieve a  ----->  Request Processing ----->This pipeline has 
+Request            Pipeline                 1 or more middle ware functions                                             
+|                                                |
+|                                                |
+                                            Each middle ware function
+                                             Terminates req/res cycle by 
+                                             Returning a response object
+                                             or
+                                             pass control to anather middle ware
+
+json()--------->route()
+
+Json is a middle ware that passes the request body into a json object
+Does not termonate the request response cycle
+Passes control to the second middle ware function (route handler)
+
+
+7-Custom middle ware function :
+we can do 
+            -log in
+            -A uthentication
+            -Authorisation
+
+
+8-Creating a custom middle ware function,
+app.use(function(req, res, next) {
+
+})
+next-In this case is a reference to the next middle ware function

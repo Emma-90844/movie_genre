@@ -1,10 +1,14 @@
 const express = require('express');
 
 const Joi = require('joi');
-
-
+const logger = require('./logger');
+const auth = require('./athenticate');
 const app = express();
 app.use(express.json());
+
+//Creating a custom middle ware
+app.use(logger);
+// app.use(auth);
 
 const genres = [
     {id:1, name : 'Adventure' },
