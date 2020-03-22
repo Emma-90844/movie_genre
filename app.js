@@ -46,6 +46,25 @@ app.post('/api/genres/', (req, res) => {
 });
 
 
+
+
+
+//PUT(UPDATE)
+//Because we are dealing with a spoecific course:we need need a course id
+app.put('/api/genres/:id', (req,res) => {
+    const genre = genres.find(c => c.id === parseInt(req.params.id));
+    if( !genre ) return res.status(404).send('Error: Genre with the given id not found');
+    const { error } = validateGenre(req.body);  //Object destructuring feature
+    if( error ){
+        res.status(400).send(error.details[0].message); 
+        return; 
+    } 
+    //Look through find if genre exist
+    genre.name = req.body.name;
+    res.send(genre);
+});
+
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
