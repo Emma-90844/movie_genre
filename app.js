@@ -61,7 +61,7 @@ app.put('/api/genres/:id', (req,res) => {
     res.send(genre);
 });
 
-
+//Building the back services for Vidly Application
 //DELETE
  
 app.delete('/', (req,res) => {
