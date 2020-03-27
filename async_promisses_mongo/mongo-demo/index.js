@@ -52,7 +52,7 @@ getCourses();
 
 
 
-//Using comparison operstors to query documens
+//COMPARISON QUERY OPERAORS
 /*
 eq-Equal
 ne=Not Equal
@@ -64,12 +64,11 @@ in=in
 nin=not in
 
 */
+/*
 async function getCourses(){
     const courses = await Course
     //Quering courses less than or equal to 10 and less than or equal to 20
     .find({price: { $gte: 10, $lte: 20}})
-
-
     //Quering courses that asre either 10, 20, 30 dollars
     .find({price: { $in: [10,20,30]}})
     .limit(10)
@@ -79,6 +78,9 @@ async function getCourses(){
     console.log(courses);
 }
 getCourses();
+*/
+
+//LOGICAL QUERY OPERATORS
 
 
 
