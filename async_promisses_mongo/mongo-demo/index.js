@@ -5,7 +5,7 @@ const chalk = require('chalk');
 mongoose.connect('mongodb://localhost/playground', { useUnifiedTopology: true })
 .then(()=> console.log(chalk.yellow('Connected to the Database')))
 .catch(() => console.log('Database connection unsuccessful...,err'));
-console.log(chalk.blue("Hello, world!"));
+
 
 
 //Schema defining the shape of the documentr in our mongo db database
@@ -38,7 +38,7 @@ async function createCourse(){
 }
 createCourse();
 
-
+//Function to query a database for a couse
  async function getCourses(){
         const courses = await Course
         .find({author: 'Onencan', isPublished: true})
@@ -49,9 +49,16 @@ createCourse();
         console.log(courses);
     }
 getCourses();
+//Function to update a course from the database
 
+async function updateCourse(id){
+    const course = await Course.findById(id);
+        if(!course) return ;
+    course.isPublished = true;
+    course.author = 'Anather Author';
+}
 
-
+updateCourse('5e7dca629669ae13bcbe2f61');
 //COMPARISON QUERY OPERAORS
 /*
 eq-Equal
@@ -95,6 +102,7 @@ getCourses();
 */
 
 //QUERING WITH REGULAR EXPRESSION
+/*
 async function getCourses(){
     const courses = await Course
     //Represents a string whose author starts with Allan
@@ -106,17 +114,17 @@ async function getCourses(){
 
 
     //Query any string with the word Mosh
-.find({  author: /.*Emmy.*/i});
-
-
+.find({  author: /.*Emmy.*/
+    // i});
     
-    console.log(courses);
-}
-getCourses();
+//     console.log(courses);
+// }
+// getCourses();
 
 
+// */
 
-
+//FUNCTION TO UPDATE A COURSE FROM THE DATABASE 
 
 
 
