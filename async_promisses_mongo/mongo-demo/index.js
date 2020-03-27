@@ -81,7 +81,38 @@ getCourses();
 */
 
 //LOGICAL QUERY OPERATORS
+/*async function getCourses(){
+    //or
+    //and
+    const courses = await Course
+    .find()
+    .or([ { author: 'Onencan'},{ isPublished: true}])
+    .and();
+   
+    console.log(courses);
+}
+getCourses();
+*/
 
+//QUERING WITH REGULAR EXPRESSION
+async function getCourses(){
+    const courses = await Course
+    //Represents a string whose author starts with Allan
+    .find({ author: /^Allan/})
+    
+
+    //Represents a string whose author ends with Hamedani
+    .find({ author: /Hamedami$/i})
+
+
+    //Query any string with the word Mosh
+.find({  author: /.*Emmy.*/i});
+
+
+    
+    console.log(courses);
+}
+getCourses();
 
 
 
