@@ -36,9 +36,7 @@ async function createCourse(){
     const result = await course.save();
     console.log(result);  
 }
-
 createCourse();
-
 
 
  async function getCourses(){
@@ -48,44 +46,13 @@ createCourse();
         .sort({ name: 1})
         .select({ name: 1, tags: 1})
         .listenerCount({ name: 2});
-        
-
-
-
         console.log(courses);
     }
-
 getCourses();
 
 
-// //Quering from the database
-// async function getCourses(){
-//         //find the courses that are 10 dollars
-//      const course = await Course
-//         // .find({author: 'Onencan', isPublished: true };
-//         //COMPARISON QUERY OPERATORS;
-//         // Courses that are 10 dolars less than 20
-//         .find({ price: {$gt:10, $lte:20}})
-//         .find({ price: { $in: [10, 20, 30]}})
-//         //Courses whose authors starts with Mosh
-//         .find({ author: /^Mosh/ })
-//         //Courses whose authors ends with Mosh 
-//         .find({ author: /Hamedami$/i})// i makes it case insensitive
-//         //Courses that contains the word Mosh
-//         .find({ author: /.*Mosh/ })
-//         .find()
-//         .or([ { author: Mosh}, { isPublished: true}])
-//         .limit(10)
-//         .sort({ name: 1})
-//         .select({ name: 1, tags: 1});
-//      console.log(course);
-// }
 
-// getCourses();
-
-
-
-//Comparision Query Operators
+//Using comparison operstors to query documens
 /*
 eq-Equal
 ne=Not Equal
@@ -97,3 +64,34 @@ in=in
 nin=not in
 
 */
+async function getCourses(){
+    const courses = await Course
+    //Quering courses less than or equal to 10 and less than or equal to 20
+    .find({price: { $gte: 10, $lte: 20}})
+
+
+    //Quering courses that asre either 10, 20, 30 dollars
+    .find({price: { $in: [10,20,30]}})
+    .limit(10)
+    .sort({ name: 1})
+    .select({ name: 1, tags: 1})
+    .listenerCount({ name: 2});
+    console.log(courses);
+}
+getCourses();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
