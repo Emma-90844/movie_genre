@@ -4,12 +4,10 @@
 -All routes of genres should be in genres.js
 
 4-Middle ware functions: Note that middle ware are called in sequence
+
 5- app.use()
 This method is called to install a middle ware function in a 
 request processing pipeline
-
-
-
 
 6-app.use(express.json);
 Express.json method. This method returns a middle ware function
@@ -51,3 +49,13 @@ next-In this case is a reference to the next middle ware function
 
 9-Setting up app to debug mode:
 export DEbug=app:startup
+
+
+10-ASYNCHRONOUS PROGRAMING:
+Call: A call back is a function that is called when the 
+results of asynchronous function is ready
+
+11. MONGO DB
+Mongo DB is a document or NoSQL database with scalability and flexibility
+for --querying
+    --indexing 
